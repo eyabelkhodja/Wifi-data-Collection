@@ -27,7 +27,11 @@ line, =pyplot.plot(x_data, y_data, '-', color='black', linewidth=2)
 pyplot.xlabel('Temps (s)')
 pyplot.ylabel('Puissance du signal')
 pyplot.title('Puissance du signal au cours du Temps')
-
+pyplot.axhspan(ymin=0, ymax=23, color='red',alpha=0.3)
+pyplot.axhspan(ymin=23, ymax=38, color='orange',alpha=0.3)
+pyplot.axhspan(ymin=38, ymax=53, color='yellow',alpha=0.3)
+pyplot.axhspan(ymin=53, ymax=84, color='green',alpha=0.3)
+text_label = pyplot.text(0, 0.95,'')
 
 def update(frame):
     difference = (datetime.now() - start).total_seconds()
@@ -36,7 +40,8 @@ def update(frame):
     line.set_data(x_data,y_data)
     figure.gca().relim()
     figure.gca().autoscale_view()
-    return line,
+    text_label.set_text(f"Puissance actuelle : {y_data[-1]}")
+    return line, text_label
 
 animation = FuncAnimation(figure, update, interval=1000)
 pyplot.show()
