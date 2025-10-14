@@ -17,7 +17,6 @@ def read_data_from_cmd ( ) :
         raise Exception('reached else of if statement')
 
     p.communicate()
-    #print(m)
     return m
 
 x_data , y_data = [], []
